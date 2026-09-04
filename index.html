@@ -1,0 +1,2910 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sir Akbar Science Academy - Physics and Mathematics resources for Class 9 and Class 10 students.">
+  <title>Sir Akbar Science Academy | Physics & Mathematics</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* =========================================================
+       SIR AKBAR SCIENCE ACADEMY
+       Complete single-file educational website
+       ========================================================= */
+
+    :root {
+      --bg: #f6f8fc;
+      --surface: #ffffff;
+      --surface-2: #f1f5fb;
+      --text: #0f172a;
+      --muted: #64748b;
+      --primary: #123b8f;
+      --primary-2: #2563eb;
+      --accent: #0ea5e9;
+      --accent-soft: #e0f2fe;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --warning: #f59e0b;
+      --danger: #dc2626;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, .06);
+      --shadow: 0 12px 35px rgba(15, 23, 42, .08);
+      --shadow-lg: 0 25px 70px rgba(15, 23, 42, .12);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --transition: .28s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg: #080f1f;
+      --surface: #101a2d;
+      --surface-2: #162239;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #60a5fa;
+      --primary-2: #3b82f6;
+      --accent: #38bdf8;
+      --accent-soft: #082f49;
+      --border: #24344d;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.2);
+      --shadow: 0 12px 35px rgba(0,0,0,.22);
+      --shadow-lg: 0 25px 70px rgba(0,0,0,.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background .3s ease, color .3s ease;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+    }
+
+    .brand-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, #123b8f, #2563eb);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, .25);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .brand-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links button {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 11px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .nav-links button:hover,
+    .nav-links button.active {
+      color: var(--primary-2);
+      background: var(--accent-soft);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      transition: var(--transition);
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary-2);
+      color: var(--primary-2);
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 105px 0 90px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(37,99,235,.13), transparent 30%),
+        radial-gradient(circle at 10% 90%, rgba(14,165,233,.09), transparent 28%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border: 1px solid rgba(37,99,235,.12);
+      border-radius: 50%;
+      right: -150px;
+      top: 20px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 65px;
+    }
+
+    .hero-content {
+      animation: slideUp .7s ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      color: var(--primary-2);
+      border: 1px solid rgba(37,99,235,.1);
+      padding: 8px 13px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(40px, 5vw, 65px);
+      line-height: 1.08;
+      letter-spacing: -2.8px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--primary-2);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 650px;
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 19px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #123b8f, #2563eb);
+      color: white;
+      box-shadow: 0 10px 25px rgba(37,99,235,.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 32px rgba(37,99,235,.3);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary-2);
+      color: var(--primary-2);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      position: relative;
+      animation: slideUp .7s .12s ease both;
+    }
+
+    .dashboard-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      transform: rotate(1deg);
+    }
+
+    .dashboard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .dashboard-title {
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .live-badge {
+      color: var(--success);
+      background: rgba(22,163,74,.1);
+      padding: 5px 9px;
+      border-radius: 50px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .progress-card {
+      padding: 17px;
+      border-radius: 15px;
+      background: var(--surface-2);
+      margin-bottom: 12px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 9px;
+    }
+
+    .progress-head span:last-child {
+      color: var(--primary-2);
+      font-weight: 800;
+    }
+
+    .progress-bar {
+      height: 7px;
+      border-radius: 50px;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #123b8f, #38bdf8);
+    }
+
+    .stats-mini {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .stat-mini {
+      padding: 14px 10px;
+      background: var(--surface-2);
+      border-radius: 13px;
+      text-align: center;
+    }
+
+    .stat-mini strong {
+      display: block;
+      font-size: 19px;
+    }
+
+    .stat-mini span {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ================= GENERAL SECTIONS ================= */
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section.alt {
+      background: var(--surface-2);
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading .small-label {
+      color: var(--primary-2);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -1.3px;
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* ================= FEATURE CARDS ================= */
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 26px;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+      border-color: rgba(37,99,235,.25);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      border-radius: 13px;
+      font-size: 20px;
+      margin-bottom: 17px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ================= CLASS CARDS ================= */
+
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .class-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .class-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(37,99,235,.3);
+    }
+
+    .class-card::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      right: -65px;
+      top: -70px;
+    }
+
+    .class-icon {
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: linear-gradient(135deg, #123b8f, #2563eb);
+      color: white;
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+
+    .class-card h3 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    .class-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .class-link {
+      color: var(--primary-2);
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ================= PAGE SYSTEM ================= */
+
+    .page {
+      display: none;
+      min-height: 65vh;
+      animation: fadeIn .4s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-header {
+      padding: 70px 0 40px;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(37,99,235,.12), transparent 30%);
+    }
+
+    .breadcrumb {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .page-header h1 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+    }
+
+    /* ================= SUBJECT CARDS ================= */
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      padding-bottom: 70px;
+    }
+
+    .subject-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 30px;
+      border-radius: 22px;
+      transition: var(--transition);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .subject-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary-2);
+    }
+
+    .subject-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--accent-soft);
+      color: var(--primary-2);
+      font-size: 25px;
+      margin-bottom: 18px;
+    }
+
+    .subject-card h2 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .subject-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 17px;
+    }
+
+    .chapter-count {
+      font-size: 12px;
+      color: var(--primary-2);
+      font-weight: 800;
+    }
+
+    /* ================= CHAPTERS ================= */
+
+    .chapter-list {
+      padding-bottom: 80px;
+    }
+
+    .chapter {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      margin-bottom: 13px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .chapter-head {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-align: left;
+    }
+
+    .chapter-number {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--accent-soft);
+      color: var(--primary-2);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .chapter-info {
+      flex: 1;
+    }
+
+    .chapter-info strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .chapter-info span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .chapter-arrow {
+      color: var(--muted);
+      transition: var(--transition);
+    }
+
+    .chapter.open .chapter-arrow {
+      transform: rotate(180deg);
+      color: var(--primary-2);
+    }
+
+    .chapter-content {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 20px 22px 24px;
+      background: var(--surface-2);
+    }
+
+    .chapter.open .chapter-content {
+      display: block;
+      animation: fadeIn .25s ease;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .resource {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .resource:hover {
+      color: var(--primary-2);
+      border-color: var(--primary-2);
+      transform: translateY(-2px);
+    }
+
+    .resource i {
+      color: var(--primary-2);
+    }
+
+    /* ================= SEARCH ================= */
+
+    .search-wrap {
+      max-width: 700px;
+      margin: 0 auto 35px;
+      position: relative;
+    }
+
+    .search-wrap i {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 16px 18px 16px 47px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      background: var(--surface);
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-2);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.08);
+    }
+
+    .search-results {
+      display: grid;
+      gap: 10px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .search-result {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 17px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .search-result small {
+      color: var(--primary-2);
+      font-weight: 800;
+    }
+
+    .no-results {
+      text-align: center;
+      color: var(--muted);
+      padding: 30px;
+    }
+
+    /* ================= QUIZ ================= */
+
+    .quiz-container {
+      max-width: 800px;
+      margin: auto;
+      padding-bottom: 80px;
+    }
+
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .quiz-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .quiz-top span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .quiz-question {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 21px;
+      margin-bottom: 22px;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .option {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .option:hover {
+      border-color: var(--primary-2);
+      background: var(--accent-soft);
+    }
+
+    .option.selected {
+      border-color: var(--primary-2);
+      background: var(--accent-soft);
+      color: var(--primary-2);
+      font-weight: 700;
+    }
+
+    .quiz-result {
+      text-align: center;
+      padding: 25px;
+      background: var(--surface-2);
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    .quiz-result .score {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--primary-2);
+    }
+
+    /* ================= FORMULA HUB ================= */
+
+    .formula-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .formula-tab {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .formula-tab.active {
+      background: var(--primary-2);
+      color: white;
+      border-color: var(--primary-2);
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding-bottom: 80px;
+    }
+
+    .formula-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .formula-card span {
+      color: var(--muted);
+      font-size: 11px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .formula {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--primary-2);
+      padding: 12px;
+      background: var(--accent-soft);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 45px;
+      align-items: center;
+      padding-bottom: 80px;
+    }
+
+    .about-visual {
+      min-height: 350px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(18,59,143,.95), rgba(37,99,235,.92)),
+        var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 30px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-visual i {
+      font-size: 75px;
+      opacity: .9;
+      margin-bottom: 15px;
+    }
+
+    .about-visual h3 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 25px;
+    }
+
+    .about-content h2 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .about-points {
+      display: grid;
+      gap: 10px;
+    }
+
+    .about-point {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .about-point i {
+      color: var(--success);
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #071329;
+      color: white;
+      padding: 55px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 45px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand {
+      max-width: 350px;
+    }
+
+    .footer-brand .brand-icon {
+      margin-bottom: 14px;
+    }
+
+    .footer-brand h3 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      margin-bottom: 7px;
+    }
+
+    .footer-brand p {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    footer h4 {
+      margin-bottom: 15px;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-links button,
+    .footer-links a {
+      background: transparent;
+      border: 0;
+      color: #94a3b8;
+      text-align: left;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .footer-links button:hover,
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social {
+      width: 37px;
+      height: 37px;
+      border: 1px solid #263754;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #cbd5e1;
+    }
+
+    .social:hover {
+      background: #172746;
+      color: white;
+    }
+
+    .copyright {
+      border-top: 1px solid #1d2c45;
+      padding-top: 20px;
+      color: #64748b;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    /* ================= MODAL ================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,.65);
+      backdrop-filter: blur(7px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+      animation: fadeIn .2s ease;
+    }
+
+    .modal-box {
+      width: min(520px, 100%);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+      animation: modalUp .3s ease;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 17px;
+    }
+
+    .modal-head h3 {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .close-modal {
+      border: 0;
+      background: var(--surface-2);
+      color: var(--text);
+      width: 35px;
+      height: 35px;
+      border-radius: 9px;
+    }
+
+    .modal-box p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* ================= TOAST ================= */
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 5000;
+      background: #0f172a;
+      color: white;
+      padding: 13px 17px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      font-size: 12px;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: .3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ================= ANIMATIONS ================= */
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modalUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 950px) {
+      .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links button {
+        text-align: left;
+        padding: 12px;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 650px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .formula-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .hero {
+        padding: 70px 0 60px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1.7px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .feature-grid,
+      .class-grid,
+      .subject-grid,
+      .formula-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats-mini {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-text span {
+        display: none;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .dashboard-card {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-text strong {
+        font-size: 13px;
+      }
+
+      .brand-icon {
+        width: 39px;
+        height: 39px;
+      }
+
+      .nav {
+        height: 68px;
+      }
+
+      .nav-links {
+        top: 68px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+     ========================================================= -->
+
+<header>
+  <div class="container nav">
+
+    <button class="brand" onclick="showPage('home')" style="border:0;background:none;color:inherit;cursor:pointer;">
+      <div class="brand-icon">
+        <i class="fa-solid fa-atom"></i>
+      </div>
+
+      <div class="brand-text">
+        <strong>Sir Akbar Science Academy</strong>
+        <span>Learn Physics & Mathematics</span>
+      </div>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <button onclick="showPage('home')" data-nav="home">
+        <i class="fa-solid fa-house"></i> Home
+      </button>
+
+      <button onclick="showClass('9')" data-nav="class9">
+        <i class="fa-solid fa-book-open"></i> Class 9
+      </button>
+
+      <button onclick="showClass('10')" data-nav="class10">
+        <i class="fa-solid fa-book"></i> Class 10
+      </button>
+
+      <button onclick="showSubjectSearch('Physics')" data-nav="physics">
+        <i class="fa-solid fa-atom"></i> Physics
+      </button>
+
+      <button onclick="showSubjectSearch('Mathematics')" data-nav="math">
+        <i class="fa-solid fa-calculator"></i> Mathematics
+      </button>
+
+      <button onclick="showPage('quizzes')" data-nav="quizzes">
+        <i class="fa-solid fa-circle-question"></i> Quizzes
+      </button>
+
+      <button onclick="showPage('about')" data-nav="about">
+        <i class="fa-solid fa-chalkboard-user"></i> About
+      </button>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle dark mode">
+        <i id="themeIcon" class="fa-solid fa-moon"></i>
+      </button>
+
+      <button class="icon-btn menu-btn" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- =========================================================
+     HOME PAGE
+     ========================================================= -->
+
+<main>
+
+<section id="home" class="page active">
+
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Study Resources for Class 9 & Class 10
+        </div>
+
+        <h1>
+          Master <span>Physics</span> & Mathematics with Sir Akbar
+        </h1>
+
+        <p>
+          Learn smarter with organized notes, important questions,
+          MCQs, formulas, practice tests and chapter-wise resources
+          designed to make Physics and Mathematics easier to understand.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="showClass('9')">
+            <i class="fa-solid fa-arrow-right"></i>
+            Explore Class 9
+          </button>
+
+          <button class="btn btn-secondary" onclick="showClass('10')">
+            <i class="fa-solid fa-arrow-right"></i>
+            Explore Class 10
+          </button>
+        </div>
+
+      </div>
+
+      <div class="hero-card">
+
+        <div class="dashboard-card">
+
+          <div class="dashboard-top">
+            <div>
+              <div class="dashboard-title">Your Learning Dashboard</div>
+              <small style="color:var(--muted);">Study smarter every day</small>
+            </div>
+
+            <span class="live-badge">
+              <i class="fa-solid fa-circle"></i> ACTIVE
+            </span>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-head">
+              <span>Physics</span>
+              <span>78%</span>
+            </div>
+
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:78%"></div>
+            </div>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-head">
+              <span>Mathematics</span>
+              <span>64%</span>
+            </div>
+
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:64%"></div>
+            </div>
+          </div>
+
+          <div class="stats-mini">
+            <div class="stat-mini">
+              <strong>20+</strong>
+              <span>Chapters</span>
+            </div>
+
+            <div class="stat-mini">
+              <strong>100+</strong>
+              <span>Questions</span>
+            </div>
+
+            <div class="stat-mini">
+              <strong>2</strong>
+              <span>Classes</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- WHAT WE OFFER -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="small-label">Everything You Need</div>
+        <h2>What We Offer</h2>
+        <p>
+          A focused learning platform built around Physics and Mathematics.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>Complete Notes</h3>
+          <p>Organized chapter notes that help you understand concepts quickly.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>Important Questions</h3>
+          <p>Focus your preparation on important examination-style questions.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">❓</div>
+          <h3>MCQs & Practice Tests</h3>
+          <p>Test your knowledge and identify areas that need more practice.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧮</div>
+          <h3>Mathematics Formulas</h3>
+          <p>Keep important formulas organized and easy to revise.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚛️</div>
+          <h3>Physics Resources</h3>
+          <p>Concepts, formulas, questions and revision resources in one place.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Chapter-wise Learning</h3>
+          <p>Study exactly what you need without getting lost in unnecessary content.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CHOOSE CLASS -->
+
+  <section class="section alt">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="small-label">Start Learning</div>
+        <h2>Choose Your Class</h2>
+        <p>Select your class to access Physics and Mathematics resources.</p>
+      </div>
+
+      <div class="class-grid">
+
+        <div class="class-card" onclick="showClass('9')">
+          <div class="class-icon">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+
+          <h3>Class 9</h3>
+          <p>Physics and Mathematics resources for Class 9 students.</p>
+
+          <div class="class-link">
+            Explore Class 9
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+
+
+        <div class="class-card" onclick="showClass('10')">
+          <div class="class-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+
+          <h3>Class 10</h3>
+          <p>Physics and Mathematics resources for Class 10 students.</p>
+
+          <div class="class-link">
+            Explore Class 10
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FORMULA HUB PREVIEW -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="section-heading">
+        <div class="small-label">Quick Revision</div>
+        <h2>Formula Hub</h2>
+        <p>Find important Physics and Mathematics formulas quickly.</p>
+      </div>
+
+      <div class="formula-tabs">
+        <button class="formula-tab active" onclick="filterFormulas('Physics', this)">
+          ⚛️ Physics
+        </button>
+
+        <button class="formula-tab" onclick="filterFormulas('Mathematics', this)">
+          🧮 Mathematics
+        </button>
+      </div>
+
+      <div class="formula-grid" id="homeFormulas"></div>
+
+    </div>
+
+  </section>
+
+</section>
+
+
+<!-- =========================================================
+     CLASS PAGE
+     ========================================================= -->
+
+<section id="classPage" class="page">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        Home / Class <span id="classNumber"></span>
+      </div>
+
+      <h1>Class <span id="classTitle"></span> Resources</h1>
+
+      <p>
+        Choose a subject to begin your chapter-wise learning.
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="subject-grid">
+
+      <div class="subject-card" onclick="showChapters(currentClass, 'Physics')">
+        <div class="subject-icon">
+          <i class="fa-solid fa-atom"></i>
+        </div>
+
+        <h2>Physics</h2>
+        <p>
+          Concepts, formulas, notes, questions, MCQs and practice resources.
+        </p>
+
+        <span class="chapter-count">
+          <i class="fa-solid fa-layer-group"></i>
+          Chapter-wise Resources
+        </span>
+      </div>
+
+
+      <div class="subject-card" onclick="showChapters(currentClass, 'Mathematics')">
+        <div class="subject-icon">
+          <i class="fa-solid fa-calculator"></i>
+        </div>
+
+        <h2>Mathematics</h2>
+        <p>
+          Formulas, concepts, examples, important questions and practice.
+        </p>
+
+        <span class="chapter-count">
+          <i class="fa-solid fa-layer-group"></i>
+          Chapter-wise Resources
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CHAPTER PAGE
+     ========================================================= -->
+
+<section id="chaptersPage" class="page">
+
+  <div class="page-header">
+    <div class="container">
+
+      <div class="breadcrumb">
+        Home / Class <span id="chapterClass"></span> /
+        <span id="chapterSubject"></span>
+      </div>
+
+      <h1>
+        <span id="chapterSubjectTitle"></span>
+      </h1>
+
+      <p>
+        Select a chapter to access its study resources.
+      </p>
+
+    </div>
+  </div>
+
+  <div class="container chapter-list" id="chapterList"></div>
+
+</section>
+
+
+<!-- =========================================================
+     SEARCH PAGE
+     ========================================================= -->
+
+<section id="searchPage" class="page">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">Home / Search</div>
+      <h1>Search Resources</h1>
+      <p>Find chapters, subjects and study resources.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom:80px;">
+
+    <div class="search-wrap">
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      <input
+        id="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="Search chapters, subjects or resources..."
+        oninput="performSearch()"
+      >
+    </div>
+
+    <div id="searchResults" class="search-results"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUIZ PAGE
+     ========================================================= -->
+
+<section id="quizzes" class="page">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">Home / Quizzes</div>
+      <h1>Quick Quiz</h1>
+      <p>Challenge yourself with Physics and Mathematics questions.</p>
+    </div>
+  </div>
+
+  <div class="container quiz-container">
+
+    <div class="quiz-card">
+
+      <div class="quiz-top">
+        <strong>
+          <i class="fa-solid fa-brain"></i>
+          Practice Quiz
+        </strong>
+
+        <span id="questionNumber">Question 1 of 5</span>
+      </div>
+
+      <div id="quizArea"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     FORMULA PAGE
+     ========================================================= -->
+
+<section id="formulasPage" class="page">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">Home / Formula Hub</div>
+      <h1>Formula Hub</h1>
+      <p>Quickly revise essential Physics and Mathematics formulas.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom:40px;">
+
+    <div class="formula-tabs">
+
+      <button class="formula-tab active"
+              onclick="filterFormulas('Physics', this)">
+        ⚛️ Physics
+      </button>
+
+      <button class="formula-tab"
+              onclick="filterFormulas('Mathematics', this)">
+        🧮 Mathematics
+      </button>
+
+    </div>
+
+    <div class="formula-grid" id="formulaPageGrid"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT PAGE
+     ========================================================= -->
+
+<section id="about" class="page">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">Home / About</div>
+      <h1>About Sir Akbar</h1>
+      <p>Focused learning. Better understanding. Stronger preparation.</p>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="about-grid">
+
+      <div class="about-visual">
+
+        <div>
+          <i class="fa-solid fa-chalkboard-user"></i>
+
+          <h3>Sir Akbar</h3>
+
+          <p style="color:#dbeafe;margin-top:8px;">
+            Physics & Mathematics Educator
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="about-content">
+
+        <h2>About Sir Akbar</h2>
+
+        <p>
+          Sir Akbar Science Academy is an educational platform created to
+          provide quality Physics and Mathematics learning resources for
+          Class 9 and Class 10 students.
+        </p>
+
+        <p>
+          The goal is simple: make learning more organized, understandable
+          and accessible by bringing notes, important questions, formulas,
+          MCQs and practice resources together in one place.
+        </p>
+
+        <div class="about-points">
+
+          <div class="about-point">
+            <i class="fa-solid fa-circle-check"></i>
+            Focused on Physics and Mathematics
+          </div>
+
+          <div class="about-point">
+            <i class="fa-solid fa-circle-check"></i>
+            Chapter-wise learning resources
+          </div>
+
+          <div class="about-point">
+            <i class="fa-solid fa-circle-check"></i>
+            Designed for Class 9 and Class 10
+          </div>
+
+          <div class="about-point">
+            <i class="fa-solid fa-circle-check"></i>
+            Built for smarter exam preparation
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     RESOURCE MODAL
+     ========================================================= -->
+
+<div class="modal" id="resourceModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h3 id="modalTitle">Resource</h3>
+
+      <button class="close-modal" onclick="closeModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+    <p id="modalText"></p>
+
+    <button class="btn btn-primary" onclick="resourceMessage()">
+      <i class="fa-solid fa-arrow-right"></i>
+      Open Resource
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div class="toast" id="toast"></div>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <div class="brand-icon">
+          <i class="fa-solid fa-atom"></i>
+        </div>
+
+        <h3>Sir Akbar Science Academy</h3>
+
+        <p>
+          Empowering Students Through Better Learning.
+          Quality Physics and Mathematics resources for Class 9 & Class 10.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4>Navigation</h4>
+
+        <div class="footer-links">
+
+          <button onclick="showPage('home')">Home</button>
+
+          <button onclick="showClass('9')">Class 9</button>
+
+          <button onclick="showClass('10')">Class 10</button>
+
+          <button onclick="showPage('quizzes')">Quizzes</button>
+
+          <button onclick="showPage('about')">About Sir Akbar</button>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h4>Connect</h4>
+
+        <div class="socials">
+
+          <a class="social" href="#" onclick="placeholderSocial(event)">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+
+          <a class="social" href="#" onclick="placeholderSocial(event)">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+
+          <a class="social" href="#" onclick="placeholderSocial(event)">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a class="social" href="#" onclick="placeholderSocial(event)">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      © 2026 Sir Akbar Science Academy. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+  /* =========================================================
+     DATA
+     Edit this section later to add chapters/resources.
+     ========================================================= */
+
+  const academyData = {
+
+    "9": {
+
+      Physics: [
+        "Physical Quantities and Measurements",
+        "Kinematics",
+        "Dynamics",
+        "Turning Effect of Forces",
+        "Gravitation",
+        "Work and Energy"
+      ],
+
+      Mathematics: [
+        "Real Numbers",
+        "Logarithms",
+        "Algebraic Expressions",
+        "Factorization",
+        "Linear Equations",
+        "Quadratic Equations"
+      ]
+
+    },
+
+    "10": {
+
+      Physics: [
+        "Simple Harmonic Motion and Waves",
+        "Sound",
+        "Geometrical Optics",
+        "Electrostatics",
+        "Current Electricity",
+        "Electromagnetism"
+      ],
+
+      Mathematics: [
+        "Quadratic Equations",
+        "Variations",
+        "Sets and Functions",
+        "Basic Statistics",
+        "Introduction to Trigonometry",
+        "Projection of a Side of a Triangle"
+      ]
+
+    }
+
+  };
+
+
+  const formulas = {
+
+    Physics: [
+      ["Speed", "v = d / t"],
+      ["Acceleration", "a = Δv / t"],
+      ["Force", "F = ma"],
+      ["Work", "W = F × d"],
+      ["Power", "P = W / t"],
+      ["Density", "ρ = m / V"]
+    ],
+
+    Mathematics: [
+      ["Quadratic Formula", "x = (-b ± √(b² - 4ac)) / 2a"],
+      ["Distance Formula", "d = √((x₂-x₁)² + (y₂-y₁)²)"],
+      ["Slope", "m = (y₂-y₁)/(x₂-x₁)"],
+      ["Area of Circle", "A = πr²"],
+      ["Circumference", "C = 2πr"],
+      ["Pythagoras", "a² + b² = c²"]
+    ]
+
+  };
+
+
+  const quizQuestions = [
+
+    {
+      question: "What is the SI unit of force?",
+      options: ["Joule", "Newton", "Watt", "Pascal"],
+      answer: 1
+    },
+
+    {
+      question: "What is the value of π approximately?",
+      options: ["2.14", "3.14", "4.14", "1.14"],
+      answer: 1
+    },
+
+    {
+      question: "Which quantity is measured in metres?",
+      options: ["Time", "Mass", "Length", "Force"],
+      answer: 2
+    },
+
+    {
+      question: "What is the formula for acceleration?",
+      options: ["a = F/m", "a = Δv/t", "a = d/t", "a = m/V"],
+      answer: 1
+    },
+
+    {
+      question: "Which formula is used to solve a quadratic equation?",
+      options: [
+        "P = VI",
+        "F = ma",
+        "x = (-b ± √(b² - 4ac))/2a",
+        "v = d/t"
+      ],
+      answer: 2
+    }
+
+  ];
+
+
+  /* =========================================================
+     GLOBAL VARIABLES
+     ========================================================= */
+
+  let currentClass = "9";
+  let currentSubject = "Physics";
+
+  let quizIndex = 0;
+  let quizScore = 0;
+  let selectedAnswer = null;
+
+
+  /* =========================================================
+     PAGE NAVIGATION
+     ========================================================= */
+
+  function hideAllPages() {
+
+    document.querySelectorAll(".page").forEach(page => {
+      page.classList.remove("active");
+    });
+
+  }
+
+
+  function showPage(id) {
+
+    hideAllPages();
+
+    const page = document.getElementById(id);
+
+    if (page) {
+      page.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav-links button").forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    const navButton = document.querySelector(`[data-nav="${id}"]`);
+
+    if (navButton) {
+      navButton.classList.add("active");
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    closeMobileMenu();
+
+  }
+
+
+  /* =========================================================
+     CLASS NAVIGATION
+     ========================================================= */
+
+  function showClass(classNumber) {
+
+    currentClass = classNumber;
+
+    document.getElementById("classNumber").textContent = classNumber;
+    document.getElementById("classTitle").textContent = classNumber;
+
+    showPage("classPage");
+
+  }
+
+
+  /* =========================================================
+     SUBJECT / CHAPTERS
+     ========================================================= */
+
+  function showChapters(classNumber, subject) {
+
+    currentClass = classNumber;
+    currentSubject = subject;
+
+    document.getElementById("chapterClass").textContent = classNumber;
+    document.getElementById("chapterSubject").textContent = subject;
+    document.getElementById("chapterSubjectTitle").textContent = subject;
+
+    const chapterList = document.getElementById("chapterList");
+
+    const chapters = academyData[classNumber][subject];
+
+    chapterList.innerHTML = "";
+
+    chapters.forEach((chapter, index) => {
+
+      const chapterElement = document.createElement("div");
+
+      chapterElement.className = "chapter";
+
+      chapterElement.innerHTML = `
+
+        <button class="chapter-head"
+                onclick="toggleChapter(this)">
+
+          <div class="chapter-number">
+            ${String(index + 1).padStart(2, "0")}
+          </div>
+
+          <div class="chapter-info">
+
+            <strong>${chapter}</strong>
+
+            <span>
+              Notes • MCQs • Questions • Practice
+            </span>
+
+          </div>
+
+          <div class="chapter-arrow">
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+
+        </button>
+
+
+        <div class="chapter-content">
+
+          <div class="resource-grid">
+
+            ${resourceButton("Notes", "fa-file-lines", chapter)}
+
+            ${resourceButton("MCQs", "fa-circle-question", chapter)}
+
+            ${resourceButton("Short Questions", "fa-pen", chapter)}
+
+            ${resourceButton("Long Questions", "fa-file-pen", chapter)}
+
+            ${resourceButton("Important Questions", "fa-star", chapter)}
+
+            ${resourceButton("Practice Test", "fa-bullseye", chapter)}
+
+          </div>
+
+        </div>
+
+      `;
+
+      chapterList.appendChild(chapterElement);
+
+    });
+
+    showPage("chaptersPage");
+
+  }
+
+
+  function resourceButton(name, icon, chapter) {
+
+    return `
+
+      <button
+        class="resource"
+        onclick="openResource('${escapeQuotes(name)}', '${escapeQuotes(chapter)}')">
+
+        <i class="fa-solid ${icon}"></i>
+
+        <span>${name}</span>
+
+      </button>
+
+    `;
+
+  }
+
+
+  function toggleChapter(button) {
+
+    const chapter = button.closest(".chapter");
+
+    chapter.classList.toggle("open");
+
+  }
+
+
+  /* =========================================================
+     RESOURCE MODAL
+     ========================================================= */
+
+  function openResource(resource, chapter) {
+
+    document.getElementById("modalTitle").textContent =
+      `${resource} — ${chapter}`;
+
+    document.getElementById("modalText").textContent =
+      `This is a sample ${resource.toLowerCase()} resource for "${chapter}". You can replace this placeholder later with your actual PDF, notes page, questions or online resource.`;
+
+    document.getElementById("resourceModal").classList.add("show");
+
+  }
+
+
+  function closeModal() {
+
+    document.getElementById("resourceModal").classList.remove("show");
+
+  }
+
+
+  function resourceMessage() {
+
+    closeModal();
+
+    showToast("Resource placeholder opened. Add your PDF/link here later.");
+
+  }
+
+
+  /* =========================================================
+     SEARCH
+     ========================================================= */
+
+  function showSubjectSearch(subject) {
+
+    currentSubject = subject;
+
+    showPage("searchPage");
+
+    setTimeout(() => {
+
+      const input = document.getElementById("searchInput");
+
+      input.value = subject;
+
+      performSearch();
+
+      input.focus();
+
+    }, 100);
+
+  }
+
+
+  function performSearch() {
+
+    const query =
+      document.getElementById("searchInput").value.trim().toLowerCase();
+
+    const results =
+      document.getElementById("searchResults");
+
+    if (!query) {
+
+      results.innerHTML = `
+
+        <div class="no-results">
+
+          <i class="fa-solid fa-magnifying-glass"
+             style="font-size:30px;margin-bottom:10px;"></i>
+
+          <p>Start typing to search for chapters, subjects or resources.</p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    let matches = [];
+
+
+    Object.keys(academyData).forEach(classNumber => {
+
+      Object.keys(academyData[classNumber]).forEach(subject => {
+
+        if (subject.toLowerCase().includes(query)) {
+
+          matches.push({
+            title: subject,
+            type: `Class ${classNumber} Subject`,
+            action: () => showChapters(classNumber, subject)
+          });
+
+        }
+
+
+        academyData[classNumber][subject].forEach(chapter => {
+
+          if (chapter.toLowerCase().includes(query)) {
+
+            matches.push({
+              title: chapter,
+              type: `Class ${classNumber} • ${subject}`,
+              action: () => showChapters(classNumber, subject)
+            });
+
+          }
+
+        });
+
+      });
+
+    });
+
+
+    ["Notes", "MCQs", "Short Questions", "Long Questions",
+     "Important Questions", "Practice Test"].forEach(resource => {
+
+      if (resource.toLowerCase().includes(query)) {
+
+        matches.push({
+          title: resource,
+          type: "Study Resource",
+          action: () => showToast(`${resource} resources are available inside each chapter.`)
+        });
+
+      }
+
+    });
+
+
+    if (matches.length === 0) {
+
+      results.innerHTML = `
+
+        <div class="no-results">
+
+          <i class="fa-regular fa-face-frown"
+             style="font-size:30px;margin-bottom:10px;"></i>
+
+          <p>No matching resources found.</p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    results.innerHTML = "";
+
+    matches.slice(0, 15).forEach(match => {
+
+      const item = document.createElement("button");
+
+      item.className = "search-result";
+      item.style.textAlign = "left";
+      item.style.color = "var(--text)";
+      item.style.cursor = "pointer";
+
+      item.innerHTML = `
+
+        <div>
+
+          <strong>${match.title}</strong>
+
+          <small style="display:block;margin-top:3px;">
+            ${match.type}
+          </small>
+
+        </div>
+
+        <i class="fa-solid fa-arrow-right"
+           style="color:var(--primary-2);"></i>
+
+      `;
+
+      item.onclick = match.action;
+
+      results.appendChild(item);
+
+    });
+
+  }
+
+
+  /* =========================================================
+     QUIZ
+     ========================================================= */
+
+  function loadQuiz() {
+
+    const area = document.getElementById("quizArea");
+
+    const question = quizQuestions[quizIndex];
+
+    document.getElementById("questionNumber").textContent =
+      `Question ${quizIndex + 1} of ${quizQuestions.length}`;
+
+    selectedAnswer = null;
+
+
+    area.innerHTML = `
+
+      <div class="quiz-question">
+        ${question.question}
+      </div>
+
+      <div class="options">
+
+        ${question.options.map((option, index) => `
+
+          <button
+            class="option"
+            onclick="selectAnswer(${index}, this)">
+
+            ${String.fromCharCode(65 + index)}.
+            ${option}
+
+          </button>
+
+        `).join("")}
+
+      </div>
+
+      <button class="btn btn-primary"
+              onclick="nextQuestion()">
+
+        ${quizIndex === quizQuestions.length - 1
+          ? "Finish Quiz"
+          : "Next Question"}
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </button>
+
+    `;
+
+  }
+
+
+  function selectAnswer(index, button) {
+
+    selectedAnswer = index;
+
+    document.querySelectorAll(".option").forEach(option => {
+      option.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+  }
+
+
+  function nextQuestion() {
+
+    if (selectedAnswer === null) {
+
+      showToast("Please select an answer first.");
+
+      return;
+
+    }
+
+
+    if (selectedAnswer === quizQuestions[quizIndex].answer) {
+
+      quizScore++;
+
+    }
+
+
+    if (quizIndex < quizQuestions.length - 1) {
+
+      quizIndex++;
+
+      loadQuiz();
+
+    } else {
+
+      showQuizResult();
+
+    }
+
+  }
+
+
+  function showQuizResult() {
+
+    const percentage =
+      Math.round((quizScore / quizQuestions.length) * 100);
+
+    let message = "";
+
+    if (percentage >= 80) {
+      message = "Excellent work! Keep it up.";
+    } else if (percentage >= 60) {
+      message = "Good effort! A little more practice will help.";
+    } else {
+      message = "Keep practicing. You can improve with revision.";
+    }
+
+
+    document.getElementById("questionNumber").textContent =
+      "Quiz Complete";
+
+
+    document.getElementById("quizArea").innerHTML = `
+
+      <div class="quiz-result">
+
+        <div style="font-size:18px;font-weight:800;margin-bottom:5px;">
+          Your Score
+        </div>
+
+        <div class="score">
+          ${quizScore}/${quizQuestions.length}
+        </div>
+
+        <p style="color:var(--muted);margin:10px 0 20px;">
+          ${percentage}% — ${message}
+        </p>
+
+        <button class="btn btn-primary"
+                onclick="restartQuiz()">
+
+          <i class="fa-solid fa-rotate-right"></i>
+          Restart Quiz
+
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  function restartQuiz() {
+
+    quizIndex = 0;
+    quizScore = 0;
+    selectedAnswer = null;
+
+    loadQuiz();
+
+  }
+
+
+  /* =========================================================
+     FORMULAS
+     ========================================================= */
+
+  function renderFormulas(subject, elementId) {
+
+    const container =
+      document.getElementById(elementId);
+
+    container.innerHTML = formulas[subject].map(item => `
+
+      <div class="formula-card">
+
+        <span>${item[0]}</span>
+
+        <div class="formula">
+          ${item[1]}
+        </div>
+
+      </div>
+
+    `).join("");
+
+  }
+
+
+  function filterFormulas(subject, button) {
+
+    document.querySelectorAll(".formula-tab").forEach(tab => {
+      tab.classList.remove("active");
+    });
+
+    if (button) {
+      button.classList.add("active");
+    }
+
+    renderFormulas(subject, "formulaPageGrid");
+    renderFormulas(subject, "homeFormulas");
+
+    if (!document.getElementById("formulasPage").classList.contains("active")) {
+      showPage("formulasPage");
+    }
+
+  }
+
+
+  /* =========================================================
+     DARK MODE
+     ========================================================= */
+
+  function toggleTheme() {
+
+    const html = document.documentElement;
+
+    const current =
+      html.getAttribute("data-theme");
+
+    const next =
+      current === "dark" ? "light" : "dark";
+
+    html.setAttribute("data-theme", next);
+
+    localStorage.setItem("academy-theme", next);
+
+    document.getElementById("themeIcon").className =
+      next === "dark"
+        ? "fa-solid fa-sun"
+        : "fa-solid fa-moon";
+
+  }
+
+
+  function loadTheme() {
+
+    const saved =
+      localStorage.getItem("academy-theme");
+
+    if (saved) {
+
+      document.documentElement.setAttribute(
+        "data-theme",
+        saved
+      );
+
+      document.getElementById("themeIcon").className =
+        saved === "dark"
+          ? "fa-solid fa-sun"
+          : "fa-solid fa-moon";
+
+    }
+
+  }
+
+
+  /* =========================================================
+     MOBILE MENU
+     ========================================================= */
+
+  function toggleMenu() {
+
+    document
+      .getElementById("navLinks")
+      .classList.toggle("show");
+
+  }
+
+
+  function closeMobileMenu() {
+
+    document
+      .getElementById("navLinks")
+      .classList.remove("show");
+
+  }
+
+
+  /* =========================================================
+     TOAST
+     ========================================================= */
+
+  let toastTimer;
+
+  function showToast(message) {
+
+    const toast =
+      document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    }, 3000);
+
+  }
+
+
+  /* =========================================================
+     UTILITIES
+     ========================================================= */
+
+  function escapeQuotes(text) {
+
+    return text
+      .replace(/\\/g, "\\\\")
+      .replace(/'/g, "\\'");
+
+  }
+
+
+  function placeholderSocial(event) {
+
+    event.preventDefault();
+
+    showToast("Social media link can be added here later.");
+
+  }
+
+
+  /* =========================================================
+     INITIALIZE WEBSITE
+     ========================================================= */
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    loadTheme();
+
+    renderFormulas("Physics", "homeFormulas");
+    renderFormulas("Physics", "formulaPageGrid");
+
+    loadQuiz();
+
+  });
+
+
+  /* Close modal when clicking outside */
+
+  document.getElementById("resourceModal")
+    .addEventListener("click", function(event) {
+
+      if (event.target === this) {
+        closeModal();
+      }
+
+    });
+
+
+  /* Keyboard ESC closes modal */
+
+  document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+      closeModal();
+    }
+
+  });
+
+</script>
+
+</body>
+  </html>
