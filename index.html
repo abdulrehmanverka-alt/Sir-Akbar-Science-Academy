@@ -2311,18 +2311,12 @@
 
           <div class="resource-grid">
 
-            ${resourceButton("Notes", "fa-file-lines", chapter)}
-
-            ${resourceButton("MCQs", "fa-circle-question", chapter)}
-
-            ${resourceButton("Short Questions", "fa-pen", chapter)}
-
-            ${resourceButton("Long Questions", "fa-file-pen", chapter)}
-
-            ${resourceButton("Important Questions", "fa-star", chapter)}
-
-            ${resourceButton("Practice Test", "fa-bullseye", chapter)}
-
+         ${chapter === "Quadratic Equations and Inequalities" ? `
+<a class="resource" href="Quadratic%20Equations%20and%20Inequalities.pdf" target="_blank">
+  <i class="fa-solid fa-file-pdf"></i>
+  <span>PDF</span>
+</a>
+` : ""}
           </div>
 
         </div>
