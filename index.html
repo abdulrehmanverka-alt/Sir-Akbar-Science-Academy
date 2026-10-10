@@ -2051,7 +2051,7 @@
      Edit this section later to add chapters/resources.
      ========================================================= */
 
- const academyData = {
+constacademyData = {
 
   "9": {
 
@@ -2311,13 +2311,20 @@
 
           <div class="resource-grid">
 
-         ${chapter === "Quadratic Equations and Inequalities" ? `
+         
+${chapter === "Quadratic Equations and Inequalities" ? `
 <a class="resource" href="Quadratic%20Equations%20and%20Inequalities.pdf" target="_blank">
   <i class="fa-solid fa-file-pdf"></i>
   <span>PDF</span>
 </a>
 ` : ""}
-          </div>
+
+${chapter === "Information Handling" ? `
+<a class="resource" href="Information%20Handling.pdf.pdf" target="_blank">
+  <i class="fa-solid fa-file-pdf"></i>
+  <span>PDF</span>
+</a>
+` : ""}
 
         </div>
 
